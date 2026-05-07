@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SplitMate</title>
+
+    <!-- Android App Links — diz ao sistema que este domínio pertence ao app -->
+    <link rel="alternate" href="android-app://com.splitmate/splitmate/settle" />
+</head>
+<body>
+    <script>
+        // Lê todos os query params da URL atual
+        const params = new URLSearchParams(window.location.search);
+        const deepLink = "splitmate://settle?" + params.toString();
+
+        // Tenta abrir o app diretamente
+        window.location.href = deepLink;
+
+        // Fallback: se o app não abrir em 2s, mostra o botão
+        setTimeout(() => {
+            document.getElementById("fallback").style.display = "flex";
+        }, 2000);
+    </script>
+
+    <div id="fallback" style="display:none; flex-direction:column; align-items:center;
+         justify-content:center; height:100vh; font-family:sans-serif; background:#0a1628; color:white;">
+        <img src="https://raw.githubusercontent.com/SEU_USER/splitmate-links/main/icon.png"
+             width="80" style="border-radius:20px; margin-bottom:24px" />
+        <h2 style="margin:0 0 8px">SplitMate</h2>
+        <p style="color:#94a3b8; text-align:center; padding:0 32px; margin:0 0 32px">
+            Você tem uma cobrança pendente.<br/>Abra o app para confirmar.
+        </p>
+        <a href="javascript:void(0)"
+           onclick="window.location.href=deepLink"
+           style="background:#14b8a6; color:white; padding:14px 32px;
+                  border-radius:12px; text-decoration:none; font-weight:600;">
+            Abrir no SplitMate
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.splitmate"
+           style="margin-top:16px; color:#64748b; font-size:14px;">
+            Não tem o app? Baixar agora
+        </a>
+    </div>
+</body>
+</html>
